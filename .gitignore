@@ -1,0 +1,13 @@
+/rbac_web/.DS_Store
+/rbac_web/node_modules
+/rbac_web/dist
+
+# local env files
+/rbac_web/.env.local
+/rbac_web/.env.*.local
+
+# Log files
+/rbac_web/npm-debug.log*
+/rbac_web/yarn-debug.log*
+/rbac_web/yarn-error.log*
+
