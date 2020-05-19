@@ -1,7 +1,8 @@
 package routers
 
 import (
-	"rbac/controllers"
+	"rbac_admin/controllers"
+
 	"github.com/astaxie/beego"
 )
 
