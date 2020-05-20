@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "rbac_admin/models"
 	_ "rbac_admin/routers"
 
 	"github.com/astaxie/beego"
