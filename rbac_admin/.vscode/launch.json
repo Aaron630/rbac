@@ -10,8 +10,8 @@
         "mode": "auto",
         "program": "${fileDirname}",
         "env": {
-            "GOPATH": "C:/Users/Dave Wu/go",
-            "GOROOT": "C:/go"
+            // "GOPATH": "C:/Users/Dave Wu/go",
+            // "GOROOT": "C:/go"
         },
         "args": [],
         // "showLog": true
