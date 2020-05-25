@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -20,8 +19,6 @@ type AdminUser struct {
 	AdminRoles []AdminRole `gorm:"many2many:admin_user_role;"`
 }
 
-func (c *AdminUser) AdminUserInfo() {
-	DB.First(&c)
-	fmt.Println(c)
-	// return c
+func (c *AdminUser) AdminUserInfo(account string) {
+	DB.Where("account = ?", account).First(&c)
 }
