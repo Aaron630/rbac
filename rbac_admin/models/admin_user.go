@@ -14,11 +14,13 @@ type AdminUser struct {
 	Gender     uint8       `gorm:"not null;default:0;comment:'性别:0 未知 1 男 2 女'"`
 	Mail       string      `gorm:"index;size:64;comment:'邮箱'"`
 	Status     uint8       `gorm:"not null;default:0;comment:'状态:0启用1关闭'"`
+	Token      string      `gorm:"type:char(255);comment:'用户token更新后72小时过期'"`
 	CreateAt   *time.Time  `gorm:"type:timestamp;default:current_timestamp;comment:'创建时间'"`
 	UpdateAt   *time.Time  `gorm:"type:timestamp;default:current_timestamp on update current_timestamp;comment:'更新时间'"`
 	AdminRoles []AdminRole `gorm:"many2many:admin_user_role;"`
+	Auths      []Auth      `gorm:"foreignkey:AdminUserID"`
 }
 
-func (c *AdminUser) AdminUserInfo(account string) {
+func (c *AdminUser) GetUserInfoByAccount(account string) {
 	DB.Where("account = ?", account).First(&c)
 }
