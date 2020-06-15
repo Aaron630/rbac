@@ -26,25 +26,21 @@
           </div>
         </template>
         <a-form-item>
-          <a-input
+          <a-input-password
             size="large"
-            type="password"
             @click="handlePasswordInputClick"
-            autocomplete="false"
             placeholder="至少6位密码，区分大小写"
             v-decorator="['password', {rules: [{ required: true, message: '至少6位密码，区分大小写'}, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]"
-          ></a-input>
+          ></a-input-password>
         </a-form-item>
       </a-popover>
 
       <a-form-item>
-        <a-input
+        <a-input-password
           size="large"
-          type="password"
-          autocomplete="false"
           placeholder="确认密码"
           v-decorator="['password2', {rules: [{ required: true, message: '至少6位密码，区分大小写' }, { validator: this.handlePasswordCheck }], validateTrigger: ['change', 'blur']}]"
-        ></a-input>
+        ></a-input-password>
       </a-form-item>
 
       <a-form-item>
@@ -99,7 +95,6 @@
 </template>
 
 <script>
-import { mixinDevice } from '@/utils/mixin.js'
 import { getSmsCaptcha } from '@/api/login'
 
 const levelNames = {
@@ -124,7 +119,7 @@ export default {
   name: 'Register',
   components: {
   },
-  mixins: [mixinDevice],
+  mixins: [],
   data () {
     return {
       form: this.$form.createForm(this),
