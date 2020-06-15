@@ -24,3 +24,7 @@ type AdminUser struct {
 func (c *AdminUser) GetUserInfoByAccount(account string) {
 	DB.Where("account = ?", account).First(&c)
 }
+
+func (c *AdminUser) GetUserInfoById(id int) {
+	DB.Where("id = ?", id).First(&c)
+}
