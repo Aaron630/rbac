@@ -4,12 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"rbac_admin/models"
-
-	"github.com/astaxie/beego"
 )
 
 type UserController struct {
-	beego.Controller
+	BaseController
 }
 
 func (c *UserController) UserInfo() {
@@ -363,12 +361,10 @@ func (c *UserController) UserInfo() {
       }]
     }
   }`
-	var b map[string]interface{}
-	err := json.Unmarshal([]byte(jData), &b)
+	var data map[string]interface{}
+	err := json.Unmarshal([]byte(jData), &data)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(b)
-	c.Data["json"] = &b
-	c.ServeJSON()
+	c.Success(data, "获取用户信息成功")
 }

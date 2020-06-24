@@ -8,23 +8,15 @@ import (
 	"rbac_admin/models"
 	"rbac_admin/utils"
 	"strings"
-
-	"github.com/astaxie/beego"
 )
 
 type AuthController struct {
-	beego.Controller
+	BaseController
 }
 
 type login struct {
 	Account  string `form:"account"`
 	Password string `form:"password"`
-}
-
-func (c *AuthController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
-	c.TplName = "index.tpl"
 }
 
 func (c *AuthController) Login() {
@@ -59,12 +51,10 @@ func (c *AuthController) Login() {
 		"roleId":      "admin", // TODO
 		"accessToken": accessToken,
 	}
-	c.Data["json"] = &data
-	c.ServeJSON()
+	c.Success(data, "登入成功")
 }
 
 func (c *AuthController) LoginOut() {
 	data := map[string]interface{}{}
-	c.Data["json"] = &data
-	c.ServeJSON()
+	c.Success(data, "登出成功")
 }
