@@ -30,18 +30,18 @@ func (c *AuthController) Login() {
 	adminUser := &models.AdminUser{}
 	adminUser.GetUserInfoByAccount(loginInfo.Account)
 	if adminUser == nil {
-		// TODO
+		c.Error(1002, "账号不存在")
 	}
 	passwdMD5 := md5.Sum([]byte(loginInfo.Password))
 	passwdStr := strings.ToUpper(hex.EncodeToString(passwdMD5[:]))
 	fmt.Println(passwdStr)
 
 	if passwdStr != adminUser.Passwd {
-		// 密码错误
+		c.Error(1003, "密码错误")
 	}
 	accessToken, err := utils.GenerateAssesToken(adminUser.Account)
 	if err != nil {
-		// TODO
+		c.Error(1001, "系统错误")
 	}
 	fmt.Println(accessToken)
 	data := map[string]interface{}{

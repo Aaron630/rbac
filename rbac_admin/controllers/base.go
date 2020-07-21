@@ -14,7 +14,7 @@ func (t *BaseController) Success(data interface{}, message string) {
 	t.StopRun()
 }
 
-func (t *BaseController) Error(code string, message string) {
+func (t *BaseController) Error(code int16, message string) {
 	ret := map[string]interface{}{"code": code, "message": message}
 	t.Data["json"] = ret
 	t.ServeJSON()
