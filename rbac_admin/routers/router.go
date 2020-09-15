@@ -1,8 +1,7 @@
 package routers
 
 import (
-	"rbac_admin/controllers"
-
+	"rbac/controllers"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
 )

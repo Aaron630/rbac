@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"rbac_admin/models"
+	"rbac/models"
 )
 
 type UserController struct {
