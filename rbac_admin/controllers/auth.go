@@ -15,12 +15,14 @@ type AuthController struct {
 }
 
 type login struct {
-	Account  string `form:"account"`
-	Password string `form:"password"`
+	Account  string `form:"username" json:"username"`
+	Password string `form:"password" json:"password"`
 }
 
 func (c *AuthController) Login() {
 	loginInfo := &login{}
+	fmt.Printf("login: %s", c.Ctx.Input.RequestBody)
+	// fmt.Println(c.Ctx.Input.RequestBody)
 	json.Unmarshal(c.Ctx.Input.RequestBody, loginInfo)
 	// if err := c.ParseForm(loginInfo); err != nil {
 	// 	fmt.Println(err)

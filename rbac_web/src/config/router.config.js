@@ -138,12 +138,12 @@ export const asyncRouterMap = [
         redirect: '/profile/basic',
         meta: { title: '详情页', icon: 'profile', permission: [ 'profile' ] },
         children: [
-          {
-            path: '/profile/basic',
-            name: 'ProfileBasic',
-            component: () => import('@/views/profile/basic'),
-            meta: { title: '基础详情页', permission: [ 'profile' ] }
-          },
+          // {
+          //   path: '/profile/basic',
+          //   name: 'ProfileBasic',
+          //   component: () => import('@/views/profile/basic'),
+          //   meta: { title: '基础详情页', permission: [ 'profile' ] }
+          // },
           {
             path: '/profile/advanced',
             name: 'ProfileAdvanced',
@@ -213,12 +213,12 @@ export const asyncRouterMap = [
         name: 'account',
         meta: { title: '个人页', icon: 'user', keepAlive: true, permission: [ 'user' ] },
         children: [
-          {
-            path: '/account/center',
-            name: 'center',
-            component: () => import('@/views/account/center'),
-            meta: { title: '个人中心', keepAlive: true, permission: [ 'user' ] }
-          },
+          // {
+          //   path: '/account/center',
+          //   name: 'center',
+          //   component: () => import('@/views/account/center'),
+          //   meta: { title: '个人中心', keepAlive: true, permission: [ 'user' ] }
+          // },
           {
             path: '/account/settings',
             name: 'settings',
