@@ -18,8 +18,7 @@ func main() {
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	r.Use(middleawares.AuthPermissionMiddleaware())
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/ping", middleawares.VerifyPermission("a"), func(c *gin.Context) {
 		fmt.Println("999999")
 	}, func(c *gin.Context) {
 		c.JSON(200, gin.H{

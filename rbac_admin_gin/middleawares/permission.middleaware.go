@@ -7,10 +7,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func AuthPermissionMiddleaware() gin.HandlerFunc {
+// VerifyPermission func
+func VerifyPermission(name string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		nowTime := time.Now()
-
+		fmt.Println(name)
 		//请求处理
 		c.Next()
 
