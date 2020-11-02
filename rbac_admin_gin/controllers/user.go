@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"rbaca/models"
+	"rbac/models"
 )
 
 // UserController struct
@@ -368,5 +368,5 @@ func (c *UserController) UserInfo() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	c.Success(data, "获取用户信息成功")
+	// c.Success(data, "获取用户信息成功")
 }

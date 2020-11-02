@@ -1,4 +1,4 @@
-module rbaca
+module rbac
 
 go 1.15
 

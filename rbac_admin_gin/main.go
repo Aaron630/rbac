@@ -1,9 +1,9 @@
 package main
 
 import (
-	_ "rbaca/models"
+	_ "rbac/models"
 
-	"rbaca/middleawares"
+	"rbac/middleawares"
 
 	"github.com/gin-gonic/gin"
 )

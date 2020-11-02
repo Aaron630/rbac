@@ -5,10 +5,10 @@ import (
 	"encoding/hex"
 	"fmt"
 	"net/http"
-	"rbaca/models"
+	"rbac/models"
 	"strings"
 
-	// "rbaca/utils"
+	// "rbac/utils"
 
 	"github.com/gin-gonic/gin"
 )

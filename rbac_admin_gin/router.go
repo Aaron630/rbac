@@ -1,8 +1,8 @@
 package main
 
 import (
-	. "rbaca/controllers"
-	. "rbaca/middleawares"
+	. "rbac/controllers"
+	. "rbac/middleawares"
 
 	"github.com/gin-gonic/gin"
 )
