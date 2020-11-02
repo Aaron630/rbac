@@ -1,29 +1,19 @@
 package main
 
 import (
-	"fmt"
+	_ "rbaca/models"
+
 	"rbaca/middleawares"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	// r := gin.Default()
-	// r.GET("/ping", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "pong",
-	// 	})
-	// })
-	// r.Run() // 监听并在 0.0.0.0:8080 上启动服务
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	r.GET("/ping", middleawares.VerifyPermission("a"), func(c *gin.Context) {
-		fmt.Println("999999")
-	}, func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	r.Use(middleawares.Consuming)
+	r.Use(middleawares.Auth)
+	Router(r)
 	r.Run(":8080")
 }
