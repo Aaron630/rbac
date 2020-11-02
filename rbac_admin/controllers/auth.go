@@ -8,8 +8,7 @@ import (
 	"rbac/models"
 	"strings"
 
-	// "rbac/utils"
-
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -42,31 +41,33 @@ func (p *AuthController) Login(c *gin.Context) {
 	}
 	passwdMD5 := md5.Sum([]byte(loginInfo.Password))
 	passwdStr := strings.ToUpper(hex.EncodeToString(passwdMD5[:]))
-	// fmt.Println(passwdStr)
 
 	if passwdStr != adminUser.Passwd {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "密码错误"})
 		return
 	}
-	// // accessToken, err := utils.GenerateAssesToken(adminUser.Account)
-	// if err != nil {
-	// 	c.Error(1001, "系统错误")
-	// }
-	// // fmt.Println(accessToken)
-	// data := map[string]interface{}{
-	// 	"userId":   adminUser.ID,
-	// 	"username": adminUser.Account,
-	// 	"avatar":   adminUser.Avatar,
-	// 	"roleId":   "admin", // TODO
-	// 	// "accessToken": accessToken,
-	// }
+	session := sessions.Default(c)
+	session.Set("id", adminUser.ID)
+	session.Set("username", adminUser.Account)
+	session.Save()
+
 	c.JSON(200, gin.H{
 		"sussces": "ok",
+		"data": {
+			"userId":   adminUser.ID,
+			"username": adminUser.Account,
+			"avatar":   adminUser.Avatar,
+			"roleId":   "admin", // TODO
+		},
 	})
 }
 
 // LoginOut func
 func (p *AuthController) LoginOut(c *gin.Context) {
+	session := sessions.Default(c)
+	session.Clear()
+	session.Save()
+	// session.save()
 	// data := map[string]interface{}{}
 	// c.Success(data, "登出成功")
 }
