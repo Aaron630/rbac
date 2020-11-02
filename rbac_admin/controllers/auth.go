@@ -53,7 +53,7 @@ func (p *AuthController) Login(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"sussces": "ok",
-		"data": {
+		"data": map[string]interface{}{
 			"userId":   adminUser.ID,
 			"username": adminUser.Account,
 			"avatar":   adminUser.Avatar,
