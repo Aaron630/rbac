@@ -67,7 +67,7 @@ func (p *AuthController) LoginOut(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Clear()
 	session.Save()
-	// session.save()
-	// data := map[string]interface{}{}
-	// c.Success(data, "登出成功")
+	c.JSON(200, gin.H{
+		"sussces": "登出成功",
+	})
 }
