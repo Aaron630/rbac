@@ -25,4 +25,10 @@ func Router(r *gin.Engine) {
 		authRouter.POST("/login", authController.Login)
 		authRouter.GET("/logout", authController.LoginOut)
 	}
+
+	userRouter := r.Group("/user")
+	userController := &UserController{}
+	{
+		userRouter.GET("/userInfo", userController.UserInfo)
+	}
 }

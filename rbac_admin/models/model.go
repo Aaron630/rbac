@@ -24,6 +24,7 @@ func init() {
 	// Migrate the schema
 	DB.AutoMigrate(&Admin{}, &Auth{}, &Module{}, &Role{})
 
+	// fmt.Println(languages)
 	// 创建
 	// DB.Create(&AdminUser{Account: "test1", Passwd: "qqqqq555555", Phone: 13587349346})
 

@@ -47,6 +47,7 @@ func (p *AuthController) Login(c *gin.Context) {
 		return
 	}
 	session := sessions.Default(c)
+	// set session
 	session.Set("id", adminUser.ID)
 	session.Set("username", adminUser.Account)
 	session.Save()
@@ -57,7 +58,6 @@ func (p *AuthController) Login(c *gin.Context) {
 			"userId":   adminUser.ID,
 			"username": adminUser.Account,
 			"avatar":   adminUser.Avatar,
-			"roleId":   "admin", // TODO
 		},
 	})
 }
