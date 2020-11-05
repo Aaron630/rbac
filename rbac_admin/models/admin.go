@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -33,36 +32,17 @@ func (c *Admin) GetUserInfoByID(id uint32) {
 }
 
 // GetUserPermissions func
-func (c *Admin) GetUserPermissions(id uint32) {
-	// var adminRoles []Role
-	// b := DB.Model(&c).Where("id = ?", id).Association("AdminRoles").Find(&adminRoles)
-	// fmt.Println(b)
-	// DB.Where("id = ?", id).Preload("AdminRoles").Preload("Modules").Find(&c)
-	// fmt.Println(c)
-	// 	g := DB.Exec(`SELECT
-	// 	admins.id,
-	// 	admins.account,
-	// 	admins.avatar,
-	// 	admins.mail,
-	// 	roles.id roleId,
-	// 	roles.role_name,
-	// 	modules.id moduleId,
-	// 	modules.parent_id,
-	// 	modules.action,
-	// 	modules.describe
-	// FROM
-	// 	admins,
-	// 	roles,
-	// 	modules,
-	// 	admin_role,
-	// 	role_module
-	// WHERE
-	// 	admins.id = ?
-	// 	AND admin_role.role_id =  roles.id
-	// 	AND admin_role.admin_id = admins.id
-	// 	AND role_module.module_id =  modules.id
-	// 	AND role_module.role_id = roles.id`, id)
-	// var g interface{}
-	DB.Raw("SELECT * FROM admins").Scan(&c)
-	fmt.Println(c)
+func (c *Admin) GetUserPermissions(id uint32) ([]Role, []Module) {
+	adminRoles := c.GetUserRoles(id)
+	var Modules []Module
+	DB.Debug().Model(&adminRoles).Association("Modules").Find(&Modules)
+	return adminRoles, Modules
+}
+
+// GetUserRoles func
+func (c *Admin) GetUserRoles(id uint32) []Role {
+	DB.Where("id = ?", id).First(&c)
+	var adminRoles []Role
+	DB.Debug().Model(&c).Association("AdminRoles").Find(&adminRoles)
+	return adminRoles
 }

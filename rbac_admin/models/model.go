@@ -6,6 +6,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 // DB 连接
@@ -13,7 +14,12 @@ var DB *gorm.DB
 
 func init() {
 	timezone := "'+08:00'"
-	db, err := gorm.Open(mysql.Open("root:123456@(192.168.137.10:3306)/rbac?charset=utf8mb4&parseTime=True&loc=Local&time_zone="+url.QueryEscape(timezone)), &gorm.Config{})
+	db, err := gorm.Open(
+		mysql.Open("root:123456@(192.168.137.10:3306)/rbac?charset=utf8mb4&parseTime=True&loc=Local&time_zone="+url.QueryEscape(timezone)),
+		&gorm.Config{
+			Logger: logger.Default.LogMode(logger.Silent),
+		},
+	)
 	if err != nil {
 		fmt.Println(err)
 		panic("failed to connect database:")

@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"rbac/models"
 
 	"github.com/gin-contrib/sessions"
@@ -19,6 +18,15 @@ func (p *UserController) UserInfo(c *gin.Context) {
 	adminUser := &models.Admin{}
 	session := sessions.Default(c)
 	var userID = session.Get("id")
-	adminUser.GetUserPermissions(userID.(uint32))
-	fmt.Println(adminUser)
+	adminRoles, modules := adminUser.GetUserPermissions(userID.(uint32))
+	c.JSON(200, gin.H{
+		"sussces": "ok",
+		"data": map[string]interface{}{
+			"userId":   adminUser.ID,
+			"username": adminUser.Account,
+			"avatar":   adminUser.Avatar,
+			"roles":    adminRoles,
+			"modules":  modules,
+		},
+	})
 }
