@@ -30,18 +30,27 @@ func init() {
 	// Migrate the schema
 	DB.AutoMigrate(&Admin{}, &Auth{}, &Module{}, &Role{})
 
-	// fmt.Println(languages)
-	// 创建
-	// DB.Create(&AdminUser{Account: "test1", Passwd: "qqqqq555555", Phone: 13587349346})
-
-	// 读取
-	// var userModel AdminUser
-	// DB.First(&userModel, 1)
-	// DB.Where("Phone = ?", 13587349346).First(&userModel)
-	// fmt.Println("userModel:", userModel)
-
-	// DB.Model(&userModel).Update("Phone", 13136214586)
-
-	// // 删除 - 删除product
-	// DB.Delete(&product)
+	// 初始化数据
+	var adminModel Admin
+	db.First(&adminModel)
+	if adminModel.ID == 0 {
+		// *Qq12345678
+		DB.Debug().Create(&Admin{
+			Account: "admin",
+			Passwd:  "5D44EDB067F702C21E95D46D9D787426",
+			Phone:   15387349343,
+			Email:   "1796419581@qq.com",
+			AdminRoles: []Role{
+				{
+					RoleName: "超级管理员",
+					Modules: []Module{
+						{
+							Action:   "ping",
+							Describe: "允许ping",
+						},
+					},
+				},
+			},
+		})
+	}
 }

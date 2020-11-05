@@ -6,5 +6,4 @@ type Module struct {
 	ParentID uint8  `gorm:"comment:'父ID'"`
 	Action   string `gorm:"size:32;not null;comment:'操作'"`
 	Describe string `gorm:"size:32;not null;comment:'功能描述'"`
-	// Roles    []Role `gorm:"many2many:role_module"`
 }
