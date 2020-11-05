@@ -1,19 +1,15 @@
 package main
 
 import (
-	"fmt"
 	. "rbac/controllers"
 	. "rbac/middleawares"
 
-	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
 // Router func
 func Router(r *gin.Engine) {
-	r.GET("/ping", VerifyPermission("a"), func(c *gin.Context) {
-		session := sessions.Default(c)
-		fmt.Println(session.Get("id"))
+	r.GET("/ping", VerifyPermission("ping"), func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})

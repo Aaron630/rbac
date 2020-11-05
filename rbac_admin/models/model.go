@@ -35,21 +35,29 @@ func init() {
 	db.First(&adminModel)
 	if adminModel.ID == 0 {
 		// *Qq12345678
-		DB.Debug().Create(&Admin{
-			Account: "admin",
-			Passwd:  "5D44EDB067F702C21E95D46D9D787426",
-			Phone:   15387349343,
-			Email:   "1796419581@qq.com",
-			AdminRoles: []Role{
-				{
-					RoleName: "超级管理员",
-					Modules: []Module{
-						{
-							Action:   "ping",
-							Describe: "允许ping",
+		DB.Debug().Create([]Admin{
+			{
+				Account: "admin",
+				Passwd:  "5D44EDB067F702C21E95D46D9D787426",
+				Phone:   15387349343,
+				Email:   "1796419581@qq.com",
+				AdminRoles: []Role{
+					{
+						RoleName: "超级管理员",
+						Modules: []Module{
+							{
+								Action:   "ping",
+								Describe: "允许ping",
+							},
 						},
 					},
 				},
+			},
+			{
+				Account: "test",
+				Passwd:  "5D44EDB067F702C21E95D46D9D787426",
+				Phone:   15387349344,
+				Email:   "1796419582@qq.com",
 			},
 		})
 	}
