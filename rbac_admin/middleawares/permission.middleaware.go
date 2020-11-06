@@ -18,12 +18,6 @@ func VerifyPermission(name string) gin.HandlerFunc {
 		adminUser := &models.Admin{}
 		_, modules := adminUser.GetUserPermissions(userID.(uint32))
 		isPass := utils.Contain(name, modules, "Action")
-		// for _, v := range modules {
-		// 	if v.Action == name {
-		// 		isPass = true
-		// 	}
-		// }
-
 		if isPass == false {
 			c.JSON(200, gin.H{
 				"sussces": "no",
