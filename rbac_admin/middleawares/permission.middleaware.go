@@ -3,6 +3,7 @@ package middleawares
 import (
 	"fmt"
 	"rbac/models"
+	"rbac/utils"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -16,12 +17,13 @@ func VerifyPermission(name string) gin.HandlerFunc {
 		url := c.Request.URL.String()
 		adminUser := &models.Admin{}
 		_, modules := adminUser.GetUserPermissions(userID.(uint32))
-		isPass := false
-		for _, v := range modules {
-			if v.Action == name {
-				isPass = true
-			}
-		}
+		isPass := utils.Contain(name, modules, "Action")
+		// for _, v := range modules {
+		// 	if v.Action == name {
+		// 		isPass = true
+		// 	}
+		// }
+
 		if isPass == false {
 			c.JSON(200, gin.H{
 				"sussces": "no",
